@@ -3,8 +3,10 @@ import java.util.Arrays;
 public class Algorithms {
 
     public static void main(String[] args) {
-        selectionSort();
-
+        //selectionSort();
+        int[] arr = {7,1,4,6,3,9,2};
+        //System.out.println(linearSearch(arr, 3));
+        System.out.println(Arrays.toString(bubbleSort(arr)));
     }
 
 
@@ -24,6 +26,30 @@ public class Algorithms {
             arr[i] = min;
         }
         System.out.println(Arrays.toString(arr));
+    }
+
+    public static int linearSearch(int[] arr, int n) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == n) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int[] bubbleSort(int[] arr) {
+        int last = arr.length - 2;
+        for (int i = 0; i < arr.length - 2; i++) {
+            for (int j = 0; j <= last; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+            last--;
+        }
+        return arr;
     }
 
 
