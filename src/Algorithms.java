@@ -4,9 +4,10 @@ public class Algorithms {
 
     public static void main(String[] args) {
         //selectionSort();
-        int[] arr = {7,1,4,6,3,9,2};
+        int[] arr = {1,4,6,3,9,2};
         //System.out.println(linearSearch(arr, 3));
-        System.out.println(Arrays.toString(bubbleSort(arr)));
+        //System.out.println(Arrays.toString(bubbleSort(arr)));
+        bubbleSort2(arr);
     }
 
 
@@ -37,19 +38,41 @@ public class Algorithms {
         return -1;
     }
 
-    public static int[] bubbleSort(int[] arr) {
-        int last = arr.length - 2;
-        for (int i = 0; i < arr.length - 2; i++) {
-            for (int j = 0; j <= last; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+//    public static int[] bubbleSort(int[] arr) {
+//        int last = arr.length - 2;
+//        for (int i = 0; i < arr.length - 2; i++) {
+//            for (int j = 0; j <= last; j++) {
+//                if (arr[j] > arr[j + 1]) {
+//                    int temp = arr[j];
+//                    arr[j] = arr[j + 1];
+//                    arr[j + 1] = temp;
+//                }
+//            }
+//            last--;
+//        }
+//        return arr;
+//    }
+
+
+    // better version:
+    static void bubbleSort2(int[] lst) {
+        int n = lst.length;
+        boolean swapped;
+        do
+        {
+            swapped = false;
+            for (int i = 0; i < n-1; i++) {
+                System.out.println(lst[i]);
+                if (lst[i] > lst[i+1]) {
+                    int temp = lst[i];
+                    lst[i] = lst[i+1];
+                    lst[i+1] = temp;
+                    swapped = true;
                 }
             }
-            last--;
-        }
-        return arr;
+        } while (swapped == true);
+
+        System.out.println(Arrays.toString(lst));
     }
 
 
