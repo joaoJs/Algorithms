@@ -4,15 +4,16 @@ public class Algorithms {
 
     public static void main(String[] args) {
         //selectionSort();
-        int[] arr = {1,4,6,3,9,2};
+        int[] arr = {9,5,7,3,6,2,1};
+        selectionSort(arr);
         //System.out.println(linearSearch(arr, 3));
         //System.out.println(Arrays.toString(bubbleSort(arr)));
         bubbleSort2(arr);
     }
 
 
-    public static void selectionSort() {
-        int[] arr = {1,3,5,4,2,6};
+    public static void selectionSort(int[] arr) {
+        //int[] arr = {1,3,5,4,2,6};
 
         for (int i = 0; i < arr.length; i++) {
             int min = arr[i];
@@ -38,23 +39,7 @@ public class Algorithms {
         return -1;
     }
 
-//    public static int[] bubbleSort(int[] arr) {
-//        int last = arr.length - 2;
-//        for (int i = 0; i < arr.length - 2; i++) {
-//            for (int j = 0; j <= last; j++) {
-//                if (arr[j] > arr[j + 1]) {
-//                    int temp = arr[j];
-//                    arr[j] = arr[j + 1];
-//                    arr[j + 1] = temp;
-//                }
-//            }
-//            last--;
-//        }
-//        return arr;
-//    }
 
-
-    // better version:
     static void bubbleSort2(int[] lst) {
         int n = lst.length;
         boolean swapped;
@@ -62,7 +47,7 @@ public class Algorithms {
         {
             swapped = false;
             for (int i = 0; i < n-1; i++) {
-                System.out.println(lst[i]);
+                //System.out.println(lst[i]);
                 if (lst[i] > lst[i+1]) {
                     int temp = lst[i];
                     lst[i] = lst[i+1];
