@@ -11,7 +11,8 @@ public class Algorithms {
         //System.out.println(Arrays.toString(bubbleSort(arr)));
         //bubbleSort2(arr);
         arr = mergeSort(arr);
-        binarySearch(arr, 4);
+        //binarySearch(arr, 4);
+        binarySearch2(4, arr, 0, arr.length);
     }
 
 
@@ -168,6 +169,7 @@ public class Algorithms {
                         }
                         System.out.println("Left <-- ");
                         System.out.println(Arrays.toString(left));
+                        // Search for element in left half
                         return binarySearch(left, num);
                     } else if (num > arr[median]) {
                         // make space for right array
@@ -182,6 +184,7 @@ public class Algorithms {
                         }
                         System.out.println("Right --> ");
                         System.out.println(Arrays.toString(right));
+                        // search for element in right half
                         return binarySearch(right, num);
                     } else {
                         System.out.println("Found");
@@ -189,6 +192,26 @@ public class Algorithms {
                     }
                 }
             }
+
+    public static boolean binarySearch2(int v, int[] lst, int low, int high) {
+        if (low > high) {
+            System.out.println("not found");
+            return false;
+        }
+
+        int middle = (low+high)/2;
+
+        if (v == lst[middle]) {
+            System.out.println("found! It is at " + middle);
+            return true;
+        }
+        else if (v > lst[middle]) {
+            return binarySearch2(v, lst, middle+1, high);
+        }
+        else {
+            return binarySearch2(v, lst, low, middle-1);
+        }
+    }
 
 
 }
