@@ -1,14 +1,16 @@
 import java.util.Arrays;
 
+
 public class Algorithms {
 
     public static void main(String[] args) {
         //selectionSort();
-        int[] arr = {9,5,7,3,6,2,1};
-        selectionSort(arr);
+        int[] arr = {4,9,7,6,5,3,1};
+        //selectionSort(arr);
         //System.out.println(linearSearch(arr, 3));
         //System.out.println(Arrays.toString(bubbleSort(arr)));
-        bubbleSort2(arr);
+        //bubbleSort2(arr);
+        mergeSort(arr);
     }
 
 
@@ -27,7 +29,8 @@ public class Algorithms {
             arr[indexMin] = arr[i];
             arr[i] = min;
         }
-        System.out.println(Arrays.toString(arr));
+
+        //System.out.println(Arrays.toString(arr));
     }
 
     public static int linearSearch(int[] arr, int n) {
@@ -40,7 +43,7 @@ public class Algorithms {
     }
 
 
-    static void bubbleSort2(int[] lst) {
+    public static void bubbleSort2(int[] lst) {
         int n = lst.length;
         boolean swapped;
         do
@@ -59,6 +62,83 @@ public class Algorithms {
 
         System.out.println(Arrays.toString(lst));
     }
+
+
+    public static int[] mergeSort(int[] lst) {
+        int n = lst.length;
+        int[] left;
+        int[] right;
+
+            // create space for left and right subarrays
+            if (n % 2 == 0) {
+                left = new int[n / 2];
+                right = new int[n / 2];
+            } else {
+                left = new int[n / 2];
+                right = new int[n / 2 + 1];
+            }
+
+            // fill up left and right subarrays
+            for (int i = 0; i < n; i++) {
+                if (i < n / 2) {
+                    left[i] = lst[i];
+                } else {
+                    right[i - n / 2] = lst[i];
+                }
+            }
+
+            if (n > 1) {
+                // recursively split and merge
+                right = mergeSort(right);
+                left = mergeSort(left);
+            }
+
+                // merge
+                return merge(right, left);
+
+
+    }
+    // the function for merging two sorted arrays
+    public static int[] merge(int[] left, int[] right) {
+        // create space for the merged array
+        int[] result = new int[left.length+right.length];
+
+        // running indices
+        int i = 0;
+        int j = 0;
+        int index = 0;
+
+        // add until one subarray is deplete
+        while (i < left.length && j < right.length) {
+            if (left[i] < right[j]) {
+                result[index] = left[i];
+                index++;
+                i++;
+            } else {
+                result[index] = right[j];
+                index++;
+                j++;
+            }
+                System.out.println(Arrays.toString(result));
+            }
+
+                // add every leftover element from the subarray
+                while (i < left.length) {
+                    result[index] = left[i];
+                    index++;
+                    i++;
+                }
+
+                // only one of these two while loops will be executed
+                while (j < right.length) {
+                    result[index] = right[j];
+                    index++;
+                    j++;
+                }
+                System.out.print("Result --> ");
+                System.out.println(Arrays.toString(result));
+                return result;
+            }
 
 
 }
