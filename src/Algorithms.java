@@ -10,7 +10,8 @@ public class Algorithms {
         //System.out.println(linearSearch(arr, 3));
         //System.out.println(Arrays.toString(bubbleSort(arr)));
         //bubbleSort2(arr);
-        mergeSort(arr);
+        arr = mergeSort(arr);
+        binarySearch(arr, 4);
     }
 
 
@@ -138,6 +139,55 @@ public class Algorithms {
                 System.out.print("Result --> ");
                 System.out.println(Arrays.toString(result));
                 return result;
+            }
+
+            public static String binarySearch(int[] arr, int num) {
+                int n = arr.length;
+                int median = n/2;
+                int[] left;
+                int[] right;
+
+                if (arr.length == 1) {
+                    if (arr[0] == num) {
+                        System.out.println("Found");
+                        return "Found";
+                    } else {
+                        System.out.println("Not found");
+                        return "Not found";
+                    }
+
+                } else {
+
+                    // if less then median, look for left half of array
+                    if (num < arr[median]) {
+                        //make space for left array
+                        left = new int[n / 2];
+                        // fill left array
+                        for (int i = 0; i < median; i++) {
+                            left[i] = arr[i];
+                        }
+                        System.out.println("Left <-- ");
+                        System.out.println(Arrays.toString(left));
+                        return binarySearch(left, num);
+                    } else if (num > arr[median]) {
+                        // make space for right array
+                        if (n % 2 == 0) {
+                            right = new int[(n/2) - 1];
+                        } else {
+                            right = new int[n / 2];
+                        }
+                        // fill right array
+                        for (int i = median + 1; i < n; i++) {
+                            right[i - (median + 1)] = arr[i];
+                        }
+                        System.out.println("Right --> ");
+                        System.out.println(Arrays.toString(right));
+                        return binarySearch(right, num);
+                    } else {
+                        System.out.println("Found");
+                        return "Found";
+                    }
+                }
             }
 
 
