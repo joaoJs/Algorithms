@@ -3,16 +3,23 @@ import java.util.Arrays;
 
 public class Algorithms {
 
+    private static int countX = 0;
+
     public static void main(String[] args) {
         //selectionSort();
-        int[] arr = {4,9,7,6,5,3,1};
+        int[] arr = {0,4,3,9,5,2,8,4};
         //selectionSort(arr);
         //System.out.println(linearSearch(arr, 3));
         //System.out.println(Arrays.toString(bubbleSort(arr)));
         //bubbleSort2(arr);
-        arr = mergeSort(arr);
+        //arr = mergeSort(arr);
         //binarySearch(arr, 4);
-        binarySearch2(4, arr, 0, arr.length);
+        //binarySearch2(4, arr, 0, arr.length);
+        //selectionSort(arr);
+        //linearSearch(arr, 9);
+        //bubbleSort2(arr);
+        mergeSort(arr);
+
     }
 
 
@@ -20,6 +27,9 @@ public class Algorithms {
         //int[] arr = {1,3,5,4,2,6};
 
         for (int i = 0; i < arr.length; i++) {
+            System.out.println("HERE: ");
+            System.out.println(i);
+            System.out.println(Arrays.toString(arr));
             int min = arr[i];
             int indexMin = i;
             for (int j = i; j < arr.length; j++) {
@@ -32,7 +42,7 @@ public class Algorithms {
             arr[i] = min;
         }
 
-        //System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(arr));
     }
 
     public static int linearSearch(int[] arr, int n) {
@@ -60,7 +70,7 @@ public class Algorithms {
                     swapped = true;
                 }
             }
-        } while (swapped == true);
+        } while (swapped);
 
         System.out.println(Arrays.toString(lst));
     }
@@ -96,12 +106,16 @@ public class Algorithms {
             }
 
                 // merge
+                System.out.println("Here: ");
+                System.out.println(countX);
+                System.out.println(Arrays.toString(merge(right, left)));
                 return merge(right, left);
 
 
     }
     // the function for merging two sorted arrays
     public static int[] merge(int[] left, int[] right) {
+        countX++;
         // create space for the merged array
         int[] result = new int[left.length+right.length];
 
@@ -121,7 +135,7 @@ public class Algorithms {
                 index++;
                 j++;
             }
-                System.out.println(Arrays.toString(result));
+                //System.out.println(Arrays.toString(result));
             }
 
                 // add every leftover element from the subarray
@@ -137,11 +151,12 @@ public class Algorithms {
                     index++;
                     j++;
                 }
-                System.out.print("Result --> ");
-                System.out.println(Arrays.toString(result));
+                //System.out.print("Result --> ");
+                //System.out.println(Arrays.toString(result));
                 return result;
             }
 
+            // inefficient. Takes extra space in memory.
             public static String binarySearch(int[] arr, int num) {
                 int n = arr.length;
                 int median = n/2;
@@ -193,6 +208,7 @@ public class Algorithms {
                 }
             }
 
+    // Efficient 
     public static boolean binarySearch2(int v, int[] lst, int low, int high) {
         if (low > high) {
             System.out.println("not found");
